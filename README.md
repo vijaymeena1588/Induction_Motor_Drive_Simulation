@@ -1,4 +1,4 @@
-# Simulink Induction Motor Drive Simulation
+# Induction Motor Drive Simulation/Simulink
 
 This repository contains a Simulink model for a detailed simulation of an induction motor drive. The project is designed to demonstrate the behavior and control of a three-phase induction motor using a modern **Field-Oriented Control (FOC)** or **Vector Control** strategy. This simulation is a valuable tool for designing, analyzing, and testing motor control systems.
 
