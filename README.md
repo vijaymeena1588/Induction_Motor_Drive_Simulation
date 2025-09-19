@@ -149,6 +149,12 @@ The simulation plots demonstrate both transient and steady-state performance:
   - $I_q$: High initial peak for starting torque, then constant value.  
   - $I_d$: Constant, showing stable magnetic flux (key to FOC).  
 
+    ## Current, Speed, and Torque
+
+    <p align="center">
+      <img src="images/Current_Speed_torque.png" alt="Current, Speed, and Torque" width="700"/>
+    </p>
+
 ---
 
 ✅ This project provides a structured environment to study **induction motor behavior with modern control**. It enables parameter tuning, testing load responses, and validating control strategies in a safe simulation setting.
