@@ -58,30 +58,33 @@ The **Induction Machine Model** is the core of the motor simulation. It simplifi
 
 #### Breakdown of Blocks
 
-1. **Park Transform:** A mathematical tool that converts three-phase AC quantities (like voltages and currents) into two DC components in a rotating d-q reference frame.  
+1. **Park Transform**  
+   Converts three-phase AC quantities (like voltages and currents) into two DC components in a rotating d-q reference frame.  
    - Inputs: three-phase voltages ($V_a$, $V_b$, $V_c$) and a rotational angle ($\theta$).  
    - Outputs: d-axis voltage ($V_d$) and q-axis voltage ($V_q$).  
    - Purpose: basis for achieving independent control of flux and torque.
   
-     <p align="center">
-  <img src="images/Park%20Transform.png" alt="Park Transform" width="500"/>
-     </p>
+   <p align="center">
+     <img src="images/Park%20Transform.png" alt="Park Transform" width="500"/>
+   </p>
 
-2. **Machine Model Circuit:** Contains the dynamic equations of the induction motor, modeled in the d-q rotating reference frame.  
+2. **Machine Model Circuit**  
+   Contains the dynamic equations of the induction motor, modeled in the d-q rotating reference frame.  
    - Inputs: $V_d$, $V_q$, mechanical torque ($T_m$), rotor speed ($W_r$).  
    - Outputs: d-axis current ($I_{ds}$), q-axis current ($I_{qs}$), electromagnetic torque ($T_e$), and rotor speed ($W_r$).
 
    <p align="center">
-  <img src="images/Machine%20Model%20Circuit.png" alt="Machine Model Circuit" width="500"/>
-</p>
+     <img src="images/Machine%20Model%20Circuit.png" alt="Machine Model Circuit" width="500"/>
+   </p>
 
-3. **Inverse Park Transform:** Converts calculated d-q currents ($I_{ds}$, $I_{qs}$) and the angle ($\theta$) back into three-phase currents ($I_{abc}$).  
+3. **Inverse Park Transform**  
+   Converts calculated d-q currents ($I_{ds}$, $I_{qs}$) and the angle ($\theta$) back into three-phase currents ($I_{abc}$).  
 
-> Note: Rotor speed ($W_r$) is integrated to obtain rotor angle ($\theta$). This ensures correct alignment of the d-q frame with the rotor’s magnetic field, which is critical for independent control.
+   > Note: Rotor speed ($W_r$) is integrated to obtain rotor angle ($\theta$). This ensures correct alignment of the d-q frame with the rotor’s magnetic field, which is critical for independent control.
 
-<p align="center">
-  <img src="images/Inverse%20Park%20Transform.png" alt="Inverse Park Transform" width="500"/>
-</p>
+   <p align="center">
+     <img src="images/Inverse%20Park%20Transform.png" alt="Inverse Park Transform" width="500"/>
+   </p>
 
 ---
 
@@ -100,24 +103,24 @@ The **Field-Oriented Control (FOC)** subsystem is the "brain" of the motor drive
    - **Speed Controller:** Error is processed by a PI controller to generate reference q-axis current ($I_q^*$ or `Iq ref`), which controls torque.  
    - **Flux Controller:** Generates reference d-axis current ($I_d^*$ or `Id ref`) to maintain magnetic flux.
 
-<p align="center">
-  <img src="images/Flux%20Controller.png" alt="Flux Controller" width="500"/>
-</p>
+   <p align="center">
+     <img src="images/Flux%20Controller.png" alt="Flux Controller" width="500"/>
+   </p>
 
 2. **Inner Current Control Loop**  
    - **Inputs:** Current references ($I_q^*$ and $I_d^*$) and measured motor currents.  
    - **Current Controllers:** PI controllers regulate $I_q$ and $I_d$, producing voltage commands ($V_d$, $V_q$).
 
-<p align="center">
-  <img src="images/Inner%20Current%20Control%20Loop.png" alt="Inner Current Control Loop" width="500"/>
-</p>
+   <p align="center">
+     <img src="images/Inner%20Current%20Control%20Loop.png" alt="Inner Current Control Loop" width="500"/>
+   </p>
 
 3. **Transformations and Modulation**  
    - Voltage commands ($V_d$, $V_q$) are converted via Inverse Park Transform into three-phase AC reference signals (`Ref abc`) sent to the PWM inverter.
 
-<p align="center">
-  <img src="images/Ref_iabc.png" alt="Reference abc" width="500"/>
-</p>
+   <p align="center">
+     <img src="images/Ref_iabc.png" alt="Reference abc" width="500"/>
+   </p>
 
 > Principle: **Flux and torque decoupling** allows an AC motor to be controlled like a DC motor, providing high performance.
 
@@ -145,10 +148,6 @@ The simulation plots demonstrate both transient and steady-state performance:
 - **D-Q Currents ($I_{qd}$):**  
   - $I_q$: High initial peak for starting torque, then constant value.  
   - $I_d$: Constant, showing stable magnetic flux (key to FOC).  
-
-<p align="center">
-  <img src="images/Ref_iabc.png" alt="Simulation Result Currents" width="600"/>
-</p>
 
 ---
 
