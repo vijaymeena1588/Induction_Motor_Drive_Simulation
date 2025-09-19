@@ -157,4 +157,4 @@ The simulation plots demonstrate both transient and steady-state performance:
 
 ---
 
-✅ This project provides a structured environment to study **induction motor behavior with modern control**. It enables parameter tuning, testing load responses, and validating control strategies in a safe simulation setting.
+This project provides a structured environment to study **induction motor behavior with modern control**. It enables parameter tuning, testing load responses, and validating control strategies in a safe simulation setting.
